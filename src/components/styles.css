@@ -1,0 +1,705 @@
+/* src/components/styles.css */
+
+/* --- Variables CSS --- */
+:root {
+    --primary-color: #4CAF50; /* Verde vibrante */
+    --secondary-color: #2196F3; /* Azul */
+    --accent-color: #FFC107; /* Amarillo */
+    --text-color: #333;
+    --text-color-light: #666;
+    --background-color: #f4f7f6;
+    --card-background: #ffffff;
+    --border-color: #e0e0e0;
+    --header-bg: #4CAF50;
+    --header-text: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --error-color: #d32f2f;
+    --success-color: #2e7d32;
+    --input-border: #d1d5db; /* Borde suave para inputs */
+    --input-focus-border: #4f46e5; /* Borde de enfoque para inputs (púrpura/azul, ajusta si quieres) */
+    --input-focus-shadow: rgba(79, 70, 229, 0.2);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.main-title {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* --- Mensajes de Estado --- */
+.loading-message, .error-message, .no-data-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    color: var(--text-color);
+    background-color: #e3f2fd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: var(--error-color);
+    background-color: #ffebee;
+}
+
+/* --- Botones Generales --- */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1em;
+}
+
+.button.primary {
+    background-color: var(--primary-color);
+    color: var(--header-text);
+}
+
+.button.primary:hover:not(:disabled) {
+    background-color: #43A047;
+    transform: translateY(-2px);
+}
+
+.button.secondary {
+    background-color: var(--secondary-color);
+    color: var(--header-text);
+}
+
+.button.secondary:hover:not(:disabled) {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+}
+
+.button.danger { /* Añadido para botones de eliminar */
+    background-color: #dc3545;
+    color: white;
+}
+
+.button.danger:hover:not(:disabled) {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+.button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.7;
+}
+
+.back-button {
+    margin-bottom: 20px;
+}
+
+.small-button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+.small-button + .small-button {
+    margin-left: 8px;
+}
+
+/* --- Listas y Cards (Promotores) --- */
+.promoter-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.promoter-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.promoter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow);
+}
+
+.promoter-card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.6em;
+}
+
+.promoter-card p {
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+/* --- Tablas (General) --- */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-background);
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: var(--primary-color);
+    color: var(--header-text);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tbody tr:hover {
+    background-color: #eef8ee;
+}
+
+.data-table td {
+    font-size: 0.95em;
+}
+
+/* --- Galería de Fotos en Tablas --- */
+.photo-gallery {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+}
+
+/* --- Listas de Productos dentro de las tablas --- */
+.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85em;
+}
+
+.product-list li {
+    background-color: #f0f4f7;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    border: 1px solid #e0e6eb;
+}
+
+.product-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Estilos para Filas Expandibles (PromoterDetail) --- */
+.toggle-button {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.detail-row {
+    background-color: #fcfcfc;
+}
+
+.detail-row td {
+    padding: 0;
+    border-bottom: none;
+}
+
+.detail-content {
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    margin: 10px 0;
+}
+
+/* --- Estilos para las secciones de detalle dentro de la fila expandida --- */
+.detail-section-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.detail-section-card h4 {
+    color: var(--secondary-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.detail-section-card p {
+    margin-bottom: 8px;
+}
+
+/* --- Galería de Fotos en Vista de Detalle (miniaturas clickeables) --- */
+.photo-gallery-large {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.photo-item {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.thumbnail-detail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.thumbnail-detail:hover {
+    transform: scale(1.05);
+    border-color: var(--secondary-color);
+}
+
+/* --- Tablas internas (más compactas) --- */
+.data-table.small-table th, .data-table.small-table td {
+    padding: 8px 10px;
+    font-size: 0.8em;
+}
+
+.data-table.small-table thead th {
+    background-color: var(--secondary-color);
+    color: var(--header-text);
+}
+
+/* --- Barras de Búsqueda --- */
+.search-bar-container {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #eaf6f4;
+    border-radius: 8px;
+    border: 1px solid #d4e0e0;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1.1em;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+    outline: none;
+}
+
+/* --- Selects Generales (si lo necesitas fuera de formularios específicos) --- */
+.select-input {
+    width: 100%;
+    padding: 12px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23333" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.select-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+    outline: none;
+}
+
+/* --- Estilos para Contenedores de Autenticación/Formularios (General) --- */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.auth-form {
+    background-color: var(--card-background);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow);
+    width: 100%;
+    max-width: 450px;
+    display: grid;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="text"],
+.auth-form input[type="number"] {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.1em;
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.auth-form input[type="email"]:focus,
+.auth-form input[type="password"]:focus,
+.auth-form input[type="text"]:focus,
+.auth-form input[type="number"]:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.25);
+    outline: none;
+}
+
+.auth-form .button {
+    padding: 14px 25px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.auth-form .button.primary {
+    background-color: var(--primary-color);
+    color: var(--header-text);
+    border: none;
+}
+
+.auth-form .button.primary:hover:not(:disabled) {
+    background-color: #43A047;
+    transform: translateY(-2px);
+}
+
+.auth-form .button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- Mensajes de Feedback --- */
+.message {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.95em;
+    text-align: left;
+    border: 1px solid;
+}
+
+.message.error {
+    background-color: #ffebee;
+    color: var(--error-color);
+    border-color: #ef9a9a;
+}
+
+.message.success {
+    background-color: #e8f5e9;
+    color: var(--success-color);
+    border-color: #a5d6a7;
+}
+
+.note {
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: var(--text-color-light);
+    text-align: center;
+}
+
+/* --- Estilos para la Página de Carga --- */
+.loading-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1.5em;
+}
+
+.loading-page::after {
+    content: '';
+    border: 6px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-top: 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- Estilos para la Navegación y Contenido del AdminPage --- */
+.admin-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.admin-nav .button {
+    padding: 12px 25px;
+    font-size: 1.05em;
+    white-space: nowrap;
+}
+
+.admin-content {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.logout-button {
+    margin-top: 30px;
+    background-color: #dc3545;
+    color: white;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA FORMULARIOS MODERNOS (como EditUserForm) --- */
+
+/* Contenedor principal del formulario moderno (flexbox para organizar elementos) */
+.admin-form {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos salten de línea */
+    gap: 20px; /* Espacio uniforme entre los "form-group-half" */
+    max-width: 800px; /* Un ancho máximo razonable para el formulario */
+    margin: 20px auto; /* Centrar el formulario en la página */
+    padding: 30px; /* Más padding interno para un mejor look */
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+/* Estilo para cada grupo de label + input/select que ocupará la mitad del ancho */
+.form-group-half {
+    /* flex-grow, flex-shrink, flex-basis */
+    flex: 1 1 calc(50% - 10px); /* Ocupa el 50% menos la mitad del gap, se encoge si es necesario */
+    min-width: 280px; /* Mínimo ancho para evitar que los campos se vean muy pequeños en móviles */
+    display: flex;
+    flex-direction: column; /* Coloca la etiqueta encima del input */
+    box-sizing: border-box; /* Asegura que padding y border no aumenten el ancho */
+}
+
+/* Estilo para las etiquetas de los campos */
+.form-label {
+    margin-bottom: 8px; /* Espacio entre la etiqueta y el input */
+    font-weight: 600; /* Un poco más de peso para destacar */
+    color: var(--text-color); /* Color de texto estándar */
+    font-size: 0.95em; /* Tamaño ligeramente más grande */
+}
+
+/* Estilos para inputs y selects modernos */
+.form-input-modern,
+.form-select-modern {
+    width: 100%; /* El input/select ocupará todo el ancho de su contenedor (form-group-half) */
+    padding: 12px 15px; /* Más padding para mayor altura y espacio interno */
+    border: 1px solid var(--input-border); /* Usar variable para el color del borde */
+    border-radius: 8px; /* Bordes más redondeados */
+    font-size: 1rem; /* Tamaño de fuente legible */
+    color: var(--text-color); /* Color de texto oscuro */
+    background-color: #ffffff; /* Fondo blanco */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+}
+
+.form-input-modern:focus,
+.form-select-modern:focus {
+    outline: none;
+    border-color: var(--input-focus-border); /* Color de enfoque */
+    box-shadow: 0 0 0 3px var(--input-focus-shadow); /* Sombra de enfoque */
+}
+
+/* Estilo para el input de búsqueda dentro de .action-bar (si aplica) */
+.search-input.form-input-modern {
+    margin-bottom: 0; /* Asegurar que no tenga margen inferior si está en una barra de acción */
+}
+
+/* Contenedor para los botones dentro del formulario, para que ocupen todo el ancho y se alineen */
+.form-buttons-full-width {
+    width: 100%; /* Ocupa el ancho completo de la fila del formulario */
+    display: flex;
+    justify-content: flex-start; /* Alinea los botones a la izquierda */
+    gap: 15px; /* Espacio entre los botones */
+    margin-top: 20px; /* Espacio arriba de los botones */
+    flex-wrap: wrap; /* Por si hay muchos botones y no caben */
+}
+
+/* Ajustes para la barra de acciones donde puede estar el buscador y botones */
+.action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espacio entre elementos */
+    justify-content: space-between; /* Distribuye espacio */
+    align-items: center; /* Alinea verticalmente */
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #eaf6f4;
+    border-radius: 8px;
+    border: 1px solid #d4e0e0;
+}
+
+/* Asegura que el input de búsqueda en action-bar use el 100% de su espacio si es único, o se adapte */
+.action-bar .search-input {
+    flex-grow: 1; /* Permite que el input crezca */
+    min-width: 200px; /* Ancho mínimo para el input de búsqueda */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    .main-title {
+        font-size: 2em;
+    }
+    .promoter-list {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+    .data-table th, .data-table td {
+        padding: 10px;
+    }
+    .admin-form {
+        max-width: 100%;
+        padding: 20px;
+        flex-direction: column; /* Apila los campos en pantallas pequeñas */
+        gap: 15px;
+    }
+    .form-group-half {
+        flex: 1 1 100%; /* Ocupa todo el ancho disponible */
+        min-width: unset; /* Quita el mínimo ancho */
+    }
+    .form-buttons-full-width {
+        flex-direction: column; /* Apila los botones */
+        gap: 10px;
+    }
+    .admin-nav {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .admin-nav .button {
+        width: 100%; /* Botones de navegación ocupan todo el ancho */
+    }
+    .auth-form {
+        padding: 25px;
+    }
+    .auth-form input, .auth-form .button {
+        width: 100%; /* Asegura que los campos de auth ocupen el ancho completo */
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.8em;
+    }
+    .button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .data-table th, .data-table td {
+        font-size: 0.85em;
+    }
+    .photo-gallery, .photo-gallery-large {
+        gap: 10px;
+    }
+    .thumbnail, .thumbnail-detail {
+        width: 50px;
+        height: 50px;
+    }
+    .auth-form {
+        padding: 20px;
+    }
+}
